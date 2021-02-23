@@ -1,0 +1,77 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/bgColor</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Text.SubTitle">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Text.Tab">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="Text" parent="TextAppearance.AppCompat.Body1"></style>
+
+    <style name="EditTexLogin" parent="AppTheme">
+        <item name="colorControlNormal">#ededed</item>
+        <item name="colorControlActivated">#ededed</item>
+        <item name="colorControlHighlight">#ededed</item>
+        <item name="android:textColorHint">#929caa</item>
+        <item name="android:textColor">#33383f</item>
+        <item name="colorAccent">#929caa</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="EditTexLogin1" parent="AppTheme">
+        <item name="colorControlNormal">#ededed</item>
+        <item name="colorControlActivated">#ededed</item>
+        <item name="colorControlHighlight">#ededed</item>
+        <item name="android:textColorHint">#929caa</item>
+        <item name="android:textColor">#33383f</item>
+        <item name="colorAccent">#929caa</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DialogSlideAnim" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <style name="RightJustifyTextView" parent="@android:style/Widget.TextView">
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="RightJustifyTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:textViewStyle">@style/RightJustifyTextView</item>
+    </style>
+
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#ce54d8</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#f1f1f1
+        </item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42ce54d8
+        </item>
+    </style>
+
+</resources>
