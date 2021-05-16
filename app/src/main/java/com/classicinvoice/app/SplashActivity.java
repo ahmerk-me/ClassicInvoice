@@ -126,7 +126,7 @@ public class SplashActivity extends Activity {
                     }
                 }
             }
-        }, 3000);
+        }, 1000);
 
         /*android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         deviceId = ((TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
@@ -179,7 +179,7 @@ public class SplashActivity extends Activity {
      */
     private void registerInBackground() {
 
-//        Call<ResponseBody> insertTokenCall = CalorieAPICall.getCalorieAPIInterface().RegisterDevice(regid, "2", getIMEI(), sessionManager.getUserCode());
+//        Call<ResponseBody> insertTokenCall = ClassicAPICall.getCalorieAPIInterface().RegisterDevice(regid, "2", getIMEI(), sessionManager.getUserCode());
 //
 //        insertTokenCall.enqueue(new retrofit2.Callback<ResponseBody>() {
 //            @Override

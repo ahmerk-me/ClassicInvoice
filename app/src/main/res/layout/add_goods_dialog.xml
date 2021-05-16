@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <ImageView
+        android:id="@+id/iv_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/shadow_blue"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_blue_10dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description of goods:"
+            android:textColor="@color/textWhite" />
+
+        <EditText
+            android:id="@+id/et_description"
+            style="@style/EditTextWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="leave blank to copy previous data"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/textWhite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="HSN Code :"
+                android:textColor="@color/textWhite" />
+
+            <EditText
+                android:id="@+id/et_hsnCode"
+                style="@style/EditTextWhite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="leave blank to copy previous data"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quantity : "
+                android:textColor="@color/textWhite" />
+
+            <EditText
+                android:id="@+id/et_qty"
+                style="@style/EditTextWhite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rate : "
+                android:textColor="@color/textWhite" />
+
+            <EditText
+                android:id="@+id/et_rate"
+                style="@style/EditTextWhite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:inputType="numberDecimal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Discount% : "
+                android:textColor="@color/textWhite" />
+
+            <EditText
+                android:id="@+id/et_discount"
+                style="@style/EditTextWhite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="default value is 0"
+                android:inputType="numberDecimal" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_white_10dp"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/AddLabel"
+            android:textAlignment="center"
+            android:textColor="@color/textColor" />
+
+    </LinearLayout>
+
+</RelativeLayout>

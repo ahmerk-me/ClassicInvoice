@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Classic Invoice</string>
-        <string name = "navigation_drawer_open"> Open navigation drawer </string>
-        <string name = "navigation_drawer_close"> Close navigation drawer </string>
+        
+    <string name="navigation_drawer_open"> Open navigation drawer </string>
+        
+    <string name="navigation_drawer_close"> Close navigation drawer </string>
     <string name="HomeLabel">Home</string>
     <string name="ArabicLabel">عربى</string>
     <string name="EnglishLabel">English</string>
@@ -12,7 +14,7 @@
     <string name="UpcomingMealsLabel">Upcoming Meals</string>
     <string name="MealEditedByYouLabel">Meal Edited By You</string>
     <string name="MealEditedByCalorieTeamLabel">Meal Edited By Calorie Team</string>
-    <string name="DateLabel">Date</string>
+    <string name="DateLabel">Date:</string>
     <string name="DaysLabel">Days</string>
     <string name="HoursLabel">Hours</string>
     <string name="MinLabel">Min</string>
@@ -422,4 +424,26 @@
     <string name="PassworduUpdated">Your password has been updated successfully</string>
     <string name="AmountPaid">Amount Paid</string>
     <string name="InvalidAmount">Your amount should be lesser then the remaining amount. Please enter correct amount and try again.</string>
+
+
+<!--    New strings for Classic Invoice -->
+
+    <string name="PrintersLabel">Printers</string>
+    <string name="SelectPrinterLabel">Select A Printer</string>
+    <string name="SupplierNameAddLabel">Name and address of Supplier:</string>
+    <string name="RecipientNameAddLabel">Name and address of Recipient:</string>
+    <string name="ConsigneeNameAddLabel">Name and address of Consignee:</string>
+    <string name="SameAsRecipientLabel">Same as above</string>
+    <string name="AddNewLabel">Add New</string>
+    <string name="GSTNumberLabel">GST number:</string>
+    <string name="EwayNumberLabel">E-Way Bill number:</string>
+    <string name="VehicleNumberLabel">Vehicle number:</string>
+    <string name="InvoiceNumberLabel">Invoice #</string>
+    <string name="FreightPackagingLabel">Freight/Packaging/Insurance:</string>
+    <string name="CGSTLabel">CGST:</string>
+    <string name="SGSTLabel">SGST:</string>
+    <string name="IGSTLabel">IGST:</string>
+    <string name="PrintLabel">Print</string>
+    <string name="RateLabel">Rate</string>
+
 </resources>

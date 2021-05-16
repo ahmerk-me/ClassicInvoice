@@ -22,16 +22,25 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.classicinvoice.app.classes.FixControl;
 import com.classicinvoice.app.classes.LanguageSeassionManager;
 import com.classicinvoice.app.classes.LocaleHelper;
 import com.classicinvoice.app.classes.SessionManager;
+import com.classicinvoice.app.fragments.GeneratePdfFragment;
 import com.classicinvoice.app.fragments.LoginFragment;
+import com.classicinvoice.app.models.getBooks.GetBooks;
+import com.classicinvoice.app.networking.ClassicAPICall;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.classicinvoice.app.fragments.HomeFragment;
 import com.mindorks.butterknifelite.ButterKnifeLite;
 import com.mindorks.butterknifelite.annotations.BindView;
 import com.mindorks.butterknifelite.annotations.OnClick;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 //import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 //import com.nostra13.universalimageloader.core.ImageLoader;
 //import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -46,13 +55,24 @@ public class MainActivity extends AppCompatActivity {
 
     SessionManager mSessionManager;
 
+    public static int tabNumber = 1;
+
+//    public static ImageLoader mImageLoader;
+
+    public DrawerLayout drawer;
+
+    public static Typeface tf, tfBold;
+
+    public static Toolbar toolbar;
+
+    static AppCompatActivity act;
+
+
     @BindView(R.id.bottom_bar)
     public static LinearLayout bottom_bar;
 
     @BindView(R.id.nav_view)
     NavigationView nav_view;
-
-    public DrawerLayout drawer;
 
     @BindView(R.id.content_home)
     static
@@ -93,21 +113,36 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.appbar)
     public static AppBarLayout appbar;
 
-    public static Typeface tf, tfBold;
-
-    public static Toolbar toolbar;
-
-     static AppCompatActivity act;
-
     @BindView(R.id.relative_side_menu)
     RelativeLayout relative_side_menu;
 
     @BindView(R.id.linear_top_bar)
     LinearLayout linear_top_bar;
 
-    public static int tabNumber = 1;
+    @BindView(R.id.relative_main_dialog)
+    public static RelativeLayout relative_main_dialog;
 
-//    public static ImageLoader mImageLoader;
+    @BindView(R.id.iv_shadow)
+    public static ImageView iv_shadow;
+
+    @BindView(R.id.et_description)
+    public static EditText et_description;
+
+    @BindView(R.id.et_hsnCode)
+    public static EditText et_hsnCode;
+
+    @BindView(R.id.et_qty)
+    public static EditText et_qty;
+
+    @BindView(R.id.et_rate)
+    public static EditText et_rate;
+
+    @BindView(R.id.et_discount)
+    public static EditText et_discount;
+
+    @BindView(R.id.tv_add)
+    public static TextView tv_add;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -201,12 +236,13 @@ public class MainActivity extends AppCompatActivity {
 
             if(fragType == 1){
 
-                Navigator.loadFragment(MainActivity.this, HomeFragment.newInstance(this), R.id.content_home, false, "home");
+                Navigator.loadFragment(MainActivity.this, LoginFragment.newInstance(this), R.id.content_home, false, "home");
 
             }
 
         } else {
 
+            Log.d("entered getIntent() ","on Main Activity ===> Loading Home Fragment");
             Navigator.loadFragment(MainActivity.this, HomeFragment.newInstance(this), R.id.content_home, false, "home");
 
         }
@@ -283,6 +319,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         gotoDetails(getIntent());
+
+        GeneratePdfFragment.dialog_add_btn = (TextView) this.findViewById(R.id.tv_add);
 
 //        mSessionManager.LoginSeassion();
 //
@@ -499,9 +537,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @OnClick(R.id.iv_shadow)
+    void iv_shadow() {
+
+        FixControl.hideKeybord(tv_lineTop, this);
+        relative_main_dialog.setVisibility(View.GONE);
+
+    }
+
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
+        if (relative_main_dialog.getVisibility() == 0) {
+
+            relative_main_dialog.setVisibility(View.GONE);
+            FixControl.hideKeybord(tv_lineTop, this);
+
+        } else {
+
+            super.onBackPressed();
+        }
 
     }
 
@@ -528,7 +584,7 @@ public class MainActivity extends AppCompatActivity {
 
         title.setVisibility(View.VISIBLE);
 
-        title.setVisibility(View.GONE);
+        title_img.setVisibility(View.GONE);
 
         title.setTypeface(MainActivity.tfBold, Typeface.BOLD);
 
@@ -543,7 +599,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private static void setTabs(){
+    public static void setTabs(){
 
         home_btn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home_unselected, 0, 0);
 
@@ -620,6 +676,59 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        if (intent.hasExtra("key")) {
+
+            Log.d("gotoDetails", "3 -> " + intent.getStringExtra("key"));
+
+            if (intent.getStringExtra("key").contains("OK")) {
+
+                Navigator.loadFragment(MainActivity.this, HomeFragment.newInstance(MainActivity.this), R.id.content_home, true, "home");
+            }
+
+        }
+
+    }
+
+
+    public static String getLastRow() {
+
+        final String[] lastCell = {""};
+
+        Call<GetBooks> topicsCall = ClassicAPICall.getSheetsAPIInterface().getData(ClassicConstant.SheetId,
+                "Sheet1!", ClassicConstant.ApiKey);
+
+        topicsCall.enqueue(new Callback<GetBooks>() {
+            @Override
+            public void onResponse(Call<GetBooks> call, Response<GetBooks> response) {
+
+                if (response.isSuccessful()) {
+
+//                    Snackbar.make(mainLayout, "Data added successfully", Snackbar.LENGTH_SHORT).show();
+
+                    Log.d("Retrofit Response ==> ", response.body().getValues().get(0).get(0));
+
+                    Log.d("total rows ==> ", response.body().getValues().size()+"");
+                    Log.d("total columns ==> ", response.body().getValues().get(0).size()+"");
+
+                    lastCell[0] = response.body().getValues().get(0).size()+"";
+
+                    Log.d("lastCell value ","===> " + lastCell[0]);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<GetBooks> call, Throwable t) {
+
+//                Snackbar.make(mainLayout, "Server error: " + t, Snackbar.LENGTH_LONG).show();
+
+                Log.d("RetrofitError: ", t+"");
+
+            }
+
+        });
+
+        return "Sheet1!A2:C" + lastCell[0];
     }
 
 

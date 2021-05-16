@@ -138,6 +138,10 @@ public class RegisterFragment extends Fragment {
 
         MainActivity.setupDefaultSettings();
 
+        MainActivity.tabNumber = 4;
+
+        MainActivity.setTabs();
+
         MainActivity.title_img.setVisibility(View.GONE);
         MainActivity.title.setVisibility(View.VISIBLE);
 

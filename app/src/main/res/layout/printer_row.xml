@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:background="@color/bgColor"
+    android:id="@+id/relative_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_frame_white_10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/iv_printerImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/printer_no_image" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_printerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Printer title here"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColor"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tv_printerDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:text="Printer description here"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColor"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

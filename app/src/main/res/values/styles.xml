@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/bgColor</item>
         <item name="colorPrimaryDark">@color/bgColor</item>
         <item name="android:windowLightStatusBar">true</item>
 
@@ -33,6 +33,18 @@
         <item name="android:textColor">#33383f</item>
         <item name="colorAccent">#929caa</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="EditTextWhite" parent="AppTheme">
+        <item name="colorControlNormal">#ffffff</item>
+        <item name="colorControlActivated">#ffffff</item>
+        <item name="colorControlHighlight">#ffffff</item>
+        <item name="android:backgroundTint">#EFEFEF</item>
+        <item name="android:textColorHint">#c7c5c5</item>
+        <item name="colorAccent">#ffffff</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">3dp</item>
     </style>
 
     <style name="EditTexLogin1" parent="AppTheme">

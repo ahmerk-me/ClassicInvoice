@@ -45,7 +45,7 @@ public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
 
         jsonObject.addProperty("Token", regid);
 
-//        Call<ResponseBody> insertTokenCall = CalorieAPICall.getCalorieAPIInterface().RegisterDevice(regid, "2", getIMEI(), sessionManager.getUserCode());
+//        Call<ResponseBody> insertTokenCall = ClassicAPICall.getCalorieAPIInterface().RegisterDevice(regid, "2", getIMEI(), sessionManager.getUserCode());
 //
 //        insertTokenCall.enqueue(new retrofit2.Callback<ResponseBody>() {
 //            @Override

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.classicinvoice.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+<!--    below permissions are for PDF storage-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -8,12 +14,12 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_512"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
 
         <activity android:name="com.classicinvoice.app.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -24,7 +30,63 @@
 
         <activity
             android:name="com.classicinvoice.app.MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop" />
+
+<!--        <activity android:name="com.classicinvoice.app.AuthorizeActivity"-->
+<!--            android:launchMode="singleTop"-->
+<!--            android:screenOrientation="portrait">-->
+<!--&lt;!&ndash;            <intent-filter>&ndash;&gt;-->
+<!--&lt;!&ndash;                <action android:name="android.intent.action.VIEW"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <category&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:name="android.intent.category.DEFAULT"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <category&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:name="android.intent.category.BROWSABLE"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <data android:scheme="com.classicinvoice.app://auth"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </intent-filter>&ndash;&gt;-->
+<!--        </activity>-->
+
+        <activity
+            android:name="net.openid.appauth.RedirectUriReceiverActivity"
+            tools:node="replace"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW"/>-->
+<!--                <category android:name="android.intent.category.DEFAULT"/>-->
+<!--                <category android:name="android.intent.category.BROWSABLE"/>-->
+<!--                <data android:scheme="com.classicinvoice.app://auth"/>-->
+<!--            </intent-filter>-->
+        </activity>
+
+<!--        <activity-->
+<!--            android:name="com.classicinvoice.app.AppAuthActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:launchMode="singleTop">-->
+
+<!--            <intent-filter>-->
+
+<!--                <action android:name="android.intent.action.VIEW" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+<!--                <data android:scheme="com.classicinvoice.app://auth" />-->
+
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
+        <provider
+            android:name=".classes.GenericFileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
     </application>
 

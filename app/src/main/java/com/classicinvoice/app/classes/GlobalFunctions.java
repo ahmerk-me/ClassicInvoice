@@ -902,7 +902,7 @@ public class GlobalFunctions {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.US);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         String newFormat = formatter.format(testDate);
         System.out.println(".....Date..." + newFormat);
 

@@ -1,5 +1,6 @@
 package com.classicinvoice.app.fragments;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,17 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.classicinvoice.app.MainActivity;
+import com.classicinvoice.app.Navigator;
 import com.classicinvoice.app.R;
 import com.classicinvoice.app.classes.GlobalFunctions;
 import com.classicinvoice.app.classes.LanguageSeassionManager;
 import com.classicinvoice.app.classes.SessionManager;
 import com.mindorks.butterknifelite.ButterKnifeLite;
 import com.mindorks.butterknifelite.annotations.BindView;
+import com.mindorks.butterknifelite.annotations.OnClick;
 
 public class HomeFragment extends Fragment {
 
@@ -38,6 +42,9 @@ public class HomeFragment extends Fragment {
 
     @BindView(R.id.loading_progress)
     ProgressBar mloading;
+
+    @BindView(R.id.tv_listPrinters)
+    TextView tv_listPrinters;
 
 
     public static HomeFragment newInstance(FragmentActivity act) {
@@ -86,7 +93,7 @@ public class HomeFragment extends Fragment {
 
         try {
 
-            mainLayout = (RelativeLayout) inflater.inflate(R.layout.home,null);
+            mainLayout = (RelativeLayout) inflater.inflate(R.layout.home, null);
 
             ButterKnifeLite.bind(this, mainLayout);
 
@@ -105,12 +112,12 @@ public class HomeFragment extends Fragment {
     }
 
 
-    void initViews(final RelativeLayout mainLayout){
+    void initViews(final RelativeLayout mainLayout) {
 
-        if(mainLayout != null) {
+        if (mainLayout != null) {
 
             MainActivity.setTextFonts(mainLayout);
-            
+
         }
 
     }
@@ -123,8 +130,23 @@ public class HomeFragment extends Fragment {
 
         MainActivity.setupDefaultSettings();
 
-        MainActivity.title.setText(act.getString(R.string.HomeLabel));
+        MainActivity.tabNumber = 1;
 
+        MainActivity.setTabs();
+
+        MainActivity.title_img.setVisibility(View.VISIBLE);
+
+        MainActivity.title.setVisibility(View.GONE);
+
+        tv_listPrinters.setTypeface(MainActivity.tf, Typeface.BOLD);
+
+    }
+
+
+    @OnClick(R.id.tv_listPrinters)
+    void tv_listPrinters() {
+
+        Navigator.loadFragment(act, PrinterListFragment.newInstance(act), R.id.content_home, true, "home");
     }
 
 }
